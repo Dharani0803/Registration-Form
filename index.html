@@ -1,0 +1,292 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration-Form</title>
+    <link rel="stylesheet" href="./src/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+
+<body class="flex items-center justify-center" style="background-image: url(./images.jpg); background-size: cover;"></body>
+    <div id="form" class="w-100 bg-white flex flex-col rounded z-20 p-5 shadow-2xl">
+        <h2 class="font-extrabold text-2xl text-center mb-5">Registration Form</h2>
+
+        <div class="relative">
+            <p class="font-semibold text-lg">Name :</p>
+            <i class="fa-solid fa-user absolute left-3 top-12" style="color: rgb(84, 88, 104);"></i>
+            <input id="name" class="w-80 border p-2 pl-10 rounded h-12 mt-1" type="text" placeholder="Enter your Name">
+            <p id="nameError" style="color:red;"></p>
+        </div>
+
+
+        <div class="relative">
+            <p class="mt-5 font-semibold text-lg">E-mail :</p>
+            <i class="fa-solid fa-envelope absolute left-3 top-17" style="color: rgb(84, 88, 104);"></i>
+            <input id="email" class="w-80 border p-2 pl-10 rounded h-12 mt-1" type="email" placeholder="Enter your Mail">
+            <p id="emailError" style="color:red;"></p>
+        </div>
+
+        <div class="relative">
+            <p class="mt-5 font-semibold text-lg">Password :</p>
+            <i class="fa-solid fa-lock absolute left-3 top-17" style="color: rgb(84, 88, 104);"></i>
+            <input id="password" class="w-80 border p-2 pl-10 rounded h-12 mt-1"  maxlength="8" type="password" placeholder="**********">
+            <i id="togglePassword" class="fa-solid fa-eye-slash absolute top-17 left-70 text-gray-600 hover:text-black"></i>
+            <p id="passwordError"style="color:red;"></p>
+        </div>
+
+        <p id="strengthText" class="text-sm mt-1"></p>
+
+    <div class="w-80 h-2 bg-gray-300 rounded mt-1">
+        <div id="strengthBar" class="h-2 rounded"></div>
+    </div>
+
+        <div class="relative">
+            <p class="mt-5 font-semibold text-lg">Confirm Password :</p>
+            <i class="fa-solid fa-lock absolute left-3 top-17" style="color: rgb(84, 88, 104);"></i>
+            <input id="Confirm" class="w-80 border p-2 pl-10 rounded h-12 mt-1" maxlength="8" type="password" placeholder="**********">
+            <i id="toggleConfirm" class="fa-solid fa-eye-slash absolute top-17 left-70 text-gray-600 hover:text-black"></i>
+            <p id="ConfirmError" style="color:red;"></p>
+        </div>
+
+        <button disabled id="btn" class="mt-5 w-80 rounded p-3 text-white bg-gray-400 cursor-not-allowed">Submit</button>
+
+    </div>
+
+    <div id="complete" class="hidden bg-white p-5 rounded-2xl shadow-2xl">
+        <h1 class="text-center text-2xl font-extrabold">Registration Form</h1>
+        <p class="mx-5 my-5"><i class="fa-solid fa-circle-check" style="color: rgb(116, 192, 252);"></i>  Form submitted successfully!</p>
+        <p id="submit" class="bg-black text-white p-2 text-center font-semibold">Back</p>
+    </div>
+    
+    <script>
+        const nameInput = document.getElementById("name")
+const nameError = document.getElementById("nameError")
+const emailInput = document.getElementById("email")
+const emailError = document.getElementById("emailError")
+const passwordInput = document.getElementById("password")
+const ConfirmPasswordInput = document.getElementById("Confirm")
+const togglePassword = document.getElementById("togglePassword");
+const toggleConfirm = document.getElementById("toggleConfirm");
+const passwordError = document.getElementById("passwordError")
+const ConfirmPasswordError = document.getElementById("ConfirmError")
+const strengthText = document.getElementById("strengthText")
+const strengthBar = document.getElementById("strengthBar")
+const form = document.getElementById("form")
+const submitBtn = document.getElementById("btn")
+const complete = document.getElementById("complete")
+const submit = document.getElementById("submit")
+
+
+// When user clicks input
+nameInput.addEventListener("focus", function(){
+
+if(nameInput.value.trim() === ""){
+nameError.innerHTML = '<i class="fa-solid fa-triangle-exclamation error-icon" style="color:red;" ></i> Enter the required field'
+nameInput.classList.add("border-red-500")
+}
+
+})
+
+// When user types
+nameInput.addEventListener("input", function(){
+
+if(nameInput.value.trim() === ""){
+nameError.innerHTML = '<i class="fa-solid fa-triangle-exclamation error-icon" style="color:red;"></i> Enter the required field'
+}else{
+nameError.textContent = ""
+nameInput.classList.remove("border-red-500")
+
+}
+
+})
+// email pattern
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+// when clicking email field
+emailInput.addEventListener("focus", function(){
+
+if(emailInput.value.trim() === ""){
+emailError.innerHTML = '<i class="fa-solid fa-triangle-exclamation error-icon" style="color:red;"></i> Enter the required field'
+emailInput.classList.add("border-red-500")
+}
+
+})
+
+// when typing
+emailInput.addEventListener("input", function(){
+
+if(emailInput.value.trim() === ""){
+emailError.innerHTML = '<i class="fa-solid fa-triangle-exclamation error-icon" style="color:red;"></i> Enter the required field'
+}
+else if(!emailPattern.test(emailInput.value)){
+emailError.innerHTML = '<i class="fa-solid fa-triangle-exclamation error-icon" style="color:red;"></i> Enter the valid email'
+}
+else{
+emailError.textContent = ""
+emailInput.classList.remove("border-red-500")
+}
+
+})
+
+// password toggle
+togglePassword.addEventListener("click", function(){
+
+if(passwordInput.type === "password"){
+passwordInput.type = "text";
+togglePassword.classList.replace("fa-eye-slash","fa-eye");
+}
+else{
+passwordInput.type = "password";
+togglePassword.classList.replace("fa-eye","fa-eye-slash");
+}
+
+});
+
+// confirm password toggle
+toggleConfirm.addEventListener("click", function(){
+
+if(ConfirmPasswordInput.type === "password"){
+ConfirmPasswordInput.type = "text";
+toggleConfirm.classList.replace("fa-eye-slash","fa-eye");
+}
+else{
+ConfirmPasswordInput.type = "password";
+toggleConfirm.classList.replace("fa-eye","fa-eye-slash");
+}
+
+});
+
+// PASSWORD VALIDATION
+passwordInput.addEventListener("focus", function(){
+
+if(passwordInput.value.trim() === ""){
+passwordError.innerHTML = '<i class="fa-solid fa-triangle-exclamation error-icon" style="color:red;"></i> Enter the required field'
+passwordInput.classList.add("border-red-500")
+}
+
+})
+
+passwordInput.addEventListener("input", function(){
+
+if(passwordInput.value.trim() === ""){
+passwordError.innerHTML = '<i class="fa-solid fa-triangle-exclamation error-icon" style="color:red;"></i> Enter the required field'
+}else{
+passwordError.textContent = ""
+passwordInput.classList.remove("border-red-500")
+}
+
+})
+
+// CONFIRM PASSWORD VALIDATION
+ConfirmPasswordInput.addEventListener("focus", function(){
+
+if(ConfirmPasswordInput.value.trim() === ""){
+ConfirmPasswordError.innerHTML = '<i class="fa-solid fa-triangle-exclamation error-icon" style="color:red;"></i> Enter the required field'
+ConfirmPasswordInput.classList.add("border-red-500")
+}
+
+})
+
+ConfirmPasswordInput.addEventListener("input", function(){
+
+if(ConfirmPasswordInput.value.trim() === ""){
+ConfirmPasswordError.innerHTML = '<i class="fa-solid fa-triangle-exclamation error-icon" style="color:red;"></i> Enter the required field'
+}
+else if(ConfirmPasswordInput.value !== passwordInput.value){
+ConfirmPasswordError.innerHTML = '<i class="fa-solid fa-triangle-exclamation error-icon" style="color:red;"></i> Passwords do not match'
+}
+else{
+ConfirmPasswordError.textContent = ""
+ConfirmPasswordInput.classList.remove("border-red-500")
+}
+
+})
+
+
+passwordInput.addEventListener("input", () => {
+
+const password = passwordInput.value
+let strength = 0
+
+if(password.length >= 6) strength++
+if(/[A-Z]/.test(password)) strength++
+if(/[0-9]/.test(password)) strength++
+if(/[@$!%*?&]/.test(password)) strength++
+
+if(strength === 1){
+strengthText.textContent = "Weak password"
+strengthText.style.color = "red"
+strengthBar.style.width = "25%"
+strengthBar.style.background = "red"
+}
+
+else if(strength === 2 || strength === 3){
+strengthText.textContent = "Medium password"
+strengthText.style.color = "orange"
+strengthBar.style.width = "60%"
+strengthBar.style.background = "orange"
+}
+
+else if(strength === 4){
+strengthText.textContent = "Strong password"
+strengthText.style.color = "green"
+strengthBar.style.width = "100%"
+strengthBar.style.background = "green"
+}
+
+else{
+strengthText.textContent = ""
+strengthBar.style.width = "0%"
+}
+
+})
+
+function checkForm(){
+
+const name = document.getElementById("name").value.trim()
+const email = document.getElementById("email").value.trim()
+const password = document.getElementById("password").value.trim()
+const ConfirmPassword = document.getElementById("Confirm").value.trim()
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+if(
+name !== "" &&
+emailPattern.test(email) &&
+password !== "" &&
+ConfirmPassword === password
+){
+submitBtn.disabled = false
+submitBtn.classList.remove("bg-gray-400","cursor-not-allowed")
+submitBtn.classList.add("bg-blue-500")
+}
+else{
+submitBtn.disabled = true
+submitBtn.classList.add("bg-gray-400","cursor-not-allowed")
+}
+
+}
+submitBtn.addEventListener("click",function(){
+            alert("Your Registration is Successfully Completed!!")
+            form.classList.add("hidden")
+            complete.classList.remove("hidden")
+        })
+ submit.addEventListener("click",function(){
+            form.classList.remove("hidden")
+                complete.classList.add("hidden")
+        })
+
+document.getElementById('submit').addEventListener('click', function(e) {
+  location.reload(); // important if inside form
+});
+
+document.getElementById("name").addEventListener("input",checkForm)
+document.getElementById("email").addEventListener("input",checkForm)
+document.getElementById("password").addEventListener("input",checkForm)
+document.getElementById("Confirm").addEventListener("input",checkForm)
+    </script>
+
+
+</body>
+</html>
