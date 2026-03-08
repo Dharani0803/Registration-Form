@@ -1,33 +1,34 @@
 # 📝 Registration Form
 
-A simple and responsive **Registration Form** built using **HTML, Tailwind CSS, and JavaScript**.
-This project demonstrates form validation, character counting, and password visibility toggle.
+A responsive **Registration Form** built using **HTML, Tailwind CSS, and JavaScript**.
+This project focuses on **form validation and user input handling using JavaScript DOM**.
 
 ---
 
 ## 🚀 Features
 
-* Responsive design using **Tailwind CSS**
-* **Character counter** for message input
-* **Password show / hide toggle**
-* **Password length validation**
-* **Confirm password validation**
-* Error message when character limit exceeds
-* Clean and modern UI
+* Responsive UI built with **Tailwind CSS**
+* **Name validation**
+* **Email format validation**
+* **Strong password validation**
+* **Confirm password matching**
+* **Error message display for each field**
+* **Submit button validation**
+* Clean and simple user interface
 
 ---
 
 ## 🛠️ Technologies Used
 
-* **HTML5** – Structure of the form
+* **HTML5** – Form structure
 * **Tailwind CSS** – Styling and responsive layout
-* **JavaScript (DOM Manipulation)** – Form validation and interactivity
+* **JavaScript (DOM Manipulation)** – Validation and interactivity
 
 ---
 
 ## 📂 Project Structure
 
-```
+```id="codeblock_1"
 registration-form
 │
 ├── index.html
@@ -44,40 +45,58 @@ registration-form
 
 ---
 
-## 💡 Functionalities
+## 💡 Form Functionalities
 
-### Character Counter
+### 1️⃣ Name Validation
 
-Limits the message field to **200 characters** and displays the current count.
+* Name field cannot be empty
+* Displays an error message if left blank
+
+### 2️⃣ Email Validation
+
+* Checks correct email format
+* Displays an error if the email is invalid
+
+### 3️⃣ Password Validation
+
+* Password must be **strong**
+* Includes:
+
+  * Uppercase letter
+  * Lowercase letter
+  * Number
+  * Special character
+
+### 4️⃣ Confirm Password
+
+* Confirms that **password and confirm password match**
+
+### 5️⃣ Error Messages
+
+Each field shows **real-time error messages** if validation fails.
 
 Example:
 
+```id="codeblock_6"
+Please enter a valid email address
 ```
-120 / 200
-```
 
-### Password Validation
+### 6️⃣ Submit Button Validation
 
-* Maximum **8 characters allowed**
-* Warning message if the limit is exceeded
-
-### Show / Hide Password
-
-Users can toggle password visibility for both:
-
-* Password
-* Confirm Password
+* The form submits only when **all fields are valid**
+* Prevents submission if any validation fails
 
 ---
 
 ## 📈 Future Improvements
 
-* Backend integration (Node.js / Firebase)
+* Backend integration
 * Database storage
 * Email verification
-* Advanced validation
+* Password strength meter
 
 ---
 
 # Registration-Form
-A simple and responsive Registration Form built using HTML, Tailwind CSS, and JavaScript. This project demonstrates form validation, character counting, and password visibility toggle.
+A responsive Registration Form built using HTML, Tailwind CSS, and JavaScript.
+This project focuses on form validation and user input handling using JavaScript DOM.
